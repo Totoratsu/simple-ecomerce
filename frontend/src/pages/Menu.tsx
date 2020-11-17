@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useHistory } from 'react-router-dom';
 
 import '../styles/Normalize.css';
 import '../styles/App.css';
-import CartItem from '../components/CartItem';
 import Container from '../components/Container';
 import { Product, GetProductsRes } from '../types/product';
 import ProductCard from '../components/ProductCard';
@@ -11,6 +11,8 @@ import { getProducts } from '../utils/api-connections';
 
 
 function Menu() {
+
+    const history = useHistory();
 
     const [response, setResponse] = useState({} as GetProductsRes);
 
@@ -28,7 +30,7 @@ function Menu() {
     }, [response]);
 
     async function handleFetch(e?: any) {
-        if(e){
+        if (e) {
             e.preventDefault();
             e.stopPropagation();
             e.nativeEvent.stopImmediatePropagation();
@@ -59,30 +61,29 @@ function Menu() {
                             <a onClick={(e) => filterProducts('OTHER', e)}>Other</a><br />
                             <a onClick={handleFetch}>All Products</a>
                         </div>
-                        <div className="col justify-content-around row">
+                        <div className="col justify-content-around row align-items-center">
                             {
                                 products.length > 0 ?
-                                    products.map((p: Product, i: any) => {
+                                    products.map((p: Product) => {
                                         return (
                                             <ProductCard
-                                                key={i}
+                                                key={p._id}
                                                 name={p.name}
                                                 price={p.price}
                                                 description={p.description}
                                                 photo={p.photo}
                                                 category={p.category}
+                                                cb={() => {
+                                                    history.push(`/product?id=${p._id}`);
+                                                }}
                                             />
                                         )
                                     }) :
-                                    <p>There is no available products</p>
+                                    <p className="text-center">There is no available products</p>
                             }
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <section>
-
             </section>
         </Container>
     );

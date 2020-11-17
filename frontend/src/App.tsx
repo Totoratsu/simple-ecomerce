@@ -7,6 +7,7 @@ import './styles/App.css';
 import Index from './pages/Index';
 import Cart from './pages/Cart';
 import Menu from './pages/Menu';
+import ProductInfo from './pages/ProductInfo';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
                 <Route path="/" exact component={Index} />
                 <Route path="/menu" exact component={Menu} />
                 <Route path="/user/cart" exact component={Cart} />
+                <Route path="/product" exact component={ProductInfo} />
             </Switch>
         </BrowserRouter>
     );

@@ -1,7 +1,7 @@
 import { Schema, model, Document } from 'mongoose';
 
 const validCategories = {
-    values: ['MALE_PRODUCT', 'FEMALE_PRODUCT', 'OTHER'],
+    values: ['MALE', 'FEMALE', 'OTHER'],
     message: '{VALUE} it\'s not a valid category'
 };
 
@@ -11,6 +11,8 @@ const ProductSchema = new Schema({
     photo: { type: String, required: true },
     description: { type: String, required: true },
     category: { type: String, default: 'OTHER', enum: validCategories, required: false },
+},{
+    timestamps: true
 });
 
 export interface IProduct extends Document {

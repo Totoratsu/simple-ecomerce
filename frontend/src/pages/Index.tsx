@@ -21,7 +21,7 @@ function Index() {
                 className="img"
             />
 
-            <section className="padding">
+            <section className="padding first-color">
                 <div className="container">
                     <h3 className="text-center">Categories</h3>
                     <div className="row justify-content-around">

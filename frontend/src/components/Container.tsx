@@ -41,7 +41,7 @@ function Container({ items, children }: Props) {
 
             <footer className="second-color padding">
                 <div className="container">
-                    <h4 className="text-center">Contac Info</h4>
+                    <h4 className="text-center">Contact Info</h4>
                     <p>Nixon Lizcano</p>
                     <ul>
                         <ol><a href="https://github.com/Totoratsu" target="blank">Github</a></ol>

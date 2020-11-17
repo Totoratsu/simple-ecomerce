@@ -7,13 +7,13 @@
     background-color: #a5a5a5;
 }
 
+.first-color {
+    background-color: #e2e2e2;
+}
+
 .padding {
     padding-top: 1.5%;
     padding-bottom: 1.5%;
-}
-
-section {
-    background-color: #e2e2e2;
 }
 
 .box {

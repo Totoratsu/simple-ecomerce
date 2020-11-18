@@ -1,6 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import '../styles/Normalize.css';
 import '../styles/App.css';
@@ -10,6 +11,8 @@ import { getCart } from '../redux/cart/reducers';
 import { Product } from '../types/product';
 
 function Cart({ cart }: any) {
+
+    const history = useHistory();
 
     function total() {
         let sum = 0;
@@ -47,7 +50,13 @@ function Cart({ cart }: any) {
                     <div className="container mt-5">
                         <div className="row justify-content-center">
                             <div className="col-md-8 align-self-center">
-                                <button type="button" className="btn btn-primary w-100">Pay</button>
+                                <button
+                                    type="button"
+                                    className="btn btn-primary w-100"
+                                    onClick={()=>{
+                                        history.push('/user/cart/pay');
+                                    }}
+                                >Pay</button>
                             </div>
                         </div>
                     </div>

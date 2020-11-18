@@ -1,13 +1,19 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import '../styles/Normalize.css';
 import '../styles/App.css';
 import Container from '../components/Container';
 import { getCart } from '../redux/cart/reducers';
+import updateCart from '../redux/cart/actions';
+import updateProductsList from '../redux/products/actions';
 
-function Pay({ cart }: any) {
+function Pay({ cart, updateCart, updateProductsList }: any) {
+
+    const history = useHistory();
+
     return (
         <Container cart={cart}>
             <div className="first-color padding">
@@ -46,7 +52,15 @@ function Pay({ cart }: any) {
                 <div className="container">
                     <div className="row justify-content-center">
                         <div className="col-md-8 align-self-center">
-                            <button type="button" className="btn btn-primary w-100">Pay</button>
+                            <button
+                                type="button"
+                                className="btn btn-primary w-100"
+                                onClick={() => {
+                                    updateCart([], 'UPDATE_CART');
+                                    updateProductsList({}, 'UPDATE_PRODUCT_LIST');
+                                    history.push('/');
+                                }}
+                            >Pay</button>
                         </div>
                     </div>
                 </div>
@@ -61,4 +75,4 @@ function mapStateToProps(state: any) {
     }
 }
 
-export default connect(mapStateToProps)(Pay);
+export default connect(mapStateToProps, { updateCart, updateProductsList })(Pay);

@@ -12,7 +12,7 @@ function CartItem({ name, price, photo }: any) {
         <img
           src={photo}
           alt={name}
-          className="img"
+          className="img rounded"
         />
       </div>
       <div className="col text-center">

@@ -15,7 +15,6 @@ interface Props {
 }
 
 function ProductCard({ name, price, photo, description, category, cb }: Props) {
-
     return (
         <div className="col-md-3 offset-1 second-color box">
             <img

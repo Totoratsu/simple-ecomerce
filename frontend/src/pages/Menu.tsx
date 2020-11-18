@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../styles/Normalize.css';
 import '../styles/App.css';
@@ -8,17 +9,18 @@ import Container from '../components/Container';
 import { Product, GetProductsRes } from '../types/product';
 import ProductCard from '../components/ProductCard';
 import { getProducts } from '../utils/api-connections';
+import { getCart } from '../redux/cart/reducers';
+import { getProductList } from '../redux/products/reducers';
+import updateProductsList from '../redux/products/actions';
 
 
-function Menu() {
+function Menu({ cart, productsList, updateProductsList }: any) {
 
     const history = useHistory();
 
     const [response, setResponse] = useState({} as GetProductsRes);
 
-    let items: string[] = [];
     const [products, setProducts] = useState([] as Array<Product>);
-
 
     useEffect(() => {
         if (products.length === 0)
@@ -36,7 +38,6 @@ function Menu() {
             e.nativeEvent.stopImmediatePropagation();
         }
         const res = await getProducts();
-        console.log(res);
         setResponse(res);
     }
 
@@ -50,7 +51,7 @@ function Menu() {
     }
 
     return (
-        <Container items={items}>
+        <Container cart={cart}>
             <section className="first-color padding">
                 <div className="container">
                     <div className="row">
@@ -74,6 +75,7 @@ function Menu() {
                                                 photo={p.photo}
                                                 category={p.category}
                                                 cb={() => {
+                                                    updateProductsList(p,'UPDATE_PRODUCT_LIST');
                                                     history.push(`/product?id=${p._id}`);
                                                 }}
                                             />
@@ -89,4 +91,10 @@ function Menu() {
     );
 }
 
-export default Menu;
+function mapStateToProps(state: any) {
+    return {
+        cart: getCart(state)
+    }
+}
+
+export default connect(mapStateToProps, { updateProductsList })(Menu);

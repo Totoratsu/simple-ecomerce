@@ -8,9 +8,9 @@ import Index from './pages/Index';
 import Cart from './pages/Cart';
 import Menu from './pages/Menu';
 import ProductInfo from './pages/ProductInfo';
+import Pay from './pages/Pay';
 
 function App() {
-
     return (
         <BrowserRouter>
             <Switch>
@@ -18,6 +18,7 @@ function App() {
                 <Route path="/menu" exact component={Menu} />
                 <Route path="/user/cart" exact component={Cart} />
                 <Route path="/product" exact component={ProductInfo} />
+                <Route path="/user/cart/pay" exact component={Pay} />
             </Switch>
         </BrowserRouter>
     );

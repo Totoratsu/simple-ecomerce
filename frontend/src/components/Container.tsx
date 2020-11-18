@@ -9,11 +9,11 @@ import '../styles/App.css';
 import '../styles/header.css'
 
 interface Props {
-    items: string[];
-    children: any
+    children: any;
+    cart: any;
 }
 
-function Container({ items, children }: Props) {
+function Container({ cart, children }: Props) {
 
     const history = useHistory();
 
@@ -22,15 +22,15 @@ function Container({ items, children }: Props) {
             <header className="CommonHeader">
                 <div className="container">
                     <div className="row align-items-center">
-                        <div className="col-md-4 align-self-center" onClick={()=> history.push('/') }>
+                        <div className="col-md-4 align-self-center" onClick={() => history.push('/')}>
                             <img src={Shop} alt="" />
                             Shop
                         </div>
                         <div className="col-md-4 align-self-center text-center">
-                            <a onClick={()=> history.push('/menu') } >Menu</a>
+                            <a onClick={() => history.push('/menu')} >Menu</a>
                         </div>
-                        <div className="col-md-4 align-self-center text-right" onClick={()=> history.push('/user/cart') }>
-                            {items.length}
+                        <div className="col-md-4 align-self-center text-right" onClick={() => history.push('/user/cart')}>
+                            {cart.length}
                             <img src={Cart} alt="" />
                         </div>
                     </div>

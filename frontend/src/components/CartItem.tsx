@@ -4,15 +4,27 @@ import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/Normalize.css';
 import '../styles/header.css';
 
-interface Props {
-    items: string[]
-}
-
-function CartItem({ items }: Props) {
+function CartItem({ name, price, photo }: any) {
 
   return (
-    <div>
-      
+    <div className="row mt-2">
+      <div className="col-md-3">
+        <img
+          src={photo}
+          alt={name}
+          className="img"
+        />
+      </div>
+      <div className="col text-center">
+        1
+      </div>
+      <div className="col text-center">
+        ${price}
+      </div>
+      <div className="col text-center">
+        ${price}
+      </div>
+      <hr/>
     </div>
   );
 }

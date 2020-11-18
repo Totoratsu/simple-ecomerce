@@ -1,20 +1,16 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../styles/Normalize.css';
 import '../styles/App.css';
 import CategoryBox from '../components/CategoryBox';
 import Container from '../components/Container';
+import { getCart } from '../redux/cart/reducers';
 
-function Index() {
-
-    const history = useHistory();
-
-    let items: string[] = [];
-
+function Index({ cart }: any) {
     return (
-        <Container items={items}>
+        <Container cart={cart}>
             <img
                 src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.shutterstock.com%2Fimage-vector%2Fsample-red-square-grunge-stamp-260nw-338250266.jpg&f=1&nofb=1"
                 alt=""
@@ -43,4 +39,10 @@ function Index() {
     );
 }
 
-export default Index;
+function mapStateToProps(state: any) {
+    return {
+        cart: getCart(state)
+    }
+}
+
+export default connect(mapStateToProps)(Index);
